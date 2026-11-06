@@ -6,14 +6,14 @@ flowchart LR
     UI["Next.js istemci bileşenleri<br/>TanStack Query · next-intl"]
   end
 
-  subgraph Vercel
+  subgraph Netlify
     RSC["Next.js 15 App Router<br/>Server Components · Route Handlers"]
     TIME["/api/time<br/>(saat farkı ölçümü)"]
   end
 
   subgraph Supabase
     AUTH["Auth<br/>magic link · anonim · TOTP"]
-    DB[("Postgres 15<br/>RLS her tabloda")]
+    DB[("Postgres 17<br/>RLS her tabloda")]
     RPC["SECURITY DEFINER RPC<br/>get_current_question · submit_answer<br/>collect_live_points"]
     RT["Realtime<br/>Postgres changes · Presence · Broadcast"]
     EF["Edge Functions<br/>puanlama · oyun doğrulama"]
@@ -39,7 +39,7 @@ flowchart LR
 - **Güven sınırı sunucudadır.** Doğru cevap, puan ve rol kontrolü yalnızca Postgres fonksiyonlarında ve Edge Functions'ta yapılır.
 - **Okuma yolu:** Sayfalar Server Components ile ilk veriyi alır; istemci TanStack Query ile tazeler.
 - **Canlı yarışma:** Oturum durumu `live_sessions` satırındaki değişikliklerden, katılımcılar Presence'tan, cevap sayısı ve açıklama Broadcast'ten gelir.
-- **Ortamlar:** yerel (`supabase start`), önizleme (her PR'da Vercel), üretim.
+- **Ortamlar:** yerel (`supabase start`), önizleme (her PR'da Netlify Deploy Preview), üretim.
 
 ## Klasör yapısı
 

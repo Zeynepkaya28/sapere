@@ -1,0 +1,10 @@
+# Netlify build settings. Next.js runs through Netlify's OpenNext adapter, which is added automatically.
+# Secrets and Supabase keys go in the Netlify UI, not here (this file is committed).
+
+[build]
+  command = "pnpm build"
+  publish = ".next"
+
+[build.environment]
+  NODE_VERSION = "22"
+  PNPM_VERSION = "12.15.0"
