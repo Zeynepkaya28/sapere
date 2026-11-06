@@ -1,0 +1,7 @@
+# Build scripts are off by default in pnpm. These ship prebuilt binaries, so their scripts stay off.
+allowBuilds:
+  "@parcel/watcher": false
+  "@swc/core": false
+  sharp: false
+  unrs-resolver: false
+  supabase: true

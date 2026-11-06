@@ -1,0 +1,47 @@
+/* Phase 0 minimal base. Design tokens (tokens.css) and fonts come in Phase 1. */
+:root {
+  --bg: #fbf7ff;
+  --ink: #3b2d4f;
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1828;
+    --ink: #f5efff;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1828;
+  --ink: #f5efff;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: system-ui, sans-serif;
+}
+
+.placeholder {
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 16px;
+}
+
+.placeholder h1 {
+  font-size: 56px;
+  line-height: 1.04;
+  margin: 0 0 8px;
+}
