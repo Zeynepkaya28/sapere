@@ -1,0 +1,131 @@
+/*
+ * Sapere design tokens. Values from the prompt (section 3).
+ * TODO(figma): compare with the "Sapere Açık" / "Sapere Koyu" variable collections once exports arrive.
+ * Light is the default; dark comes from the system or from [data-theme="dark"].
+ */
+
+:root {
+  --bg: #fbf7ff;
+  --surface: #ffffff;
+  --surface-2: #f3ecfb;
+  --ink: #3b2d4f;
+  --ink-2: #7a6b8c;
+  --line: #ece3f5;
+  --peach: #ffc4b0;
+  --rose: #ffc8dd;
+  --lavender: #d9c6f5;
+  --butter: #ffe7a3;
+  --sky: #bfe0ff;
+  --mint: #bdebd6;
+  --accent: #7c5cc4;
+  --accent-ink: #ffffff;
+  --press: #5b3fa3;
+  --live: #e2557a;
+
+  /* Pastel share when mixing a category colour into --surface for card backgrounds. */
+  --card-mix: 62%;
+
+  /*
+   * Avatars keep light pastels and #3b2d4f letters in both themes (never overridden below).
+   * Dark lavender (#a88be0) would give 4.44:1, under AA.
+   */
+  --avatar-ink: #3b2d4f;
+  --avatar-peach: #ffc4b0;
+  --avatar-rose: #ffc8dd;
+  --avatar-lavender: #d9c6f5;
+  --avatar-butter: #ffe7a3;
+  --avatar-sky: #bfe0ff;
+  --avatar-mint: #bdebd6;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-7: 28px;
+  --space-8: 40px;
+  --space-9: 56px;
+  --space-10: 80px;
+
+  /* Radii */
+  --radius-input: 14px;
+  --radius-card: 24px;
+  --radius-card-lg: 40px;
+  --radius-frame: 36px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-nav: 0 10px 30px -14px color-mix(in srgb, var(--accent) 45%, transparent);
+  --shadow-press: 0 4px 0 var(--press);
+  --shadow-press-down: 0 1px 0 var(--press);
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-panel: 300ms;
+  --dur-progress: 500ms;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --ease-spring: cubic-bezier(0.2, 1.3, 0.3, 1);
+
+  /* Type scale */
+  --fs-display: 56px;
+  --fs-section: 32px;
+  --fs-card: 24px;
+  --fs-body: 15px;
+  --fs-small: 13px;
+  --fs-eyebrow: 12px;
+  --lh-body: 1.55;
+
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1c1828;
+    --surface: #262036;
+    --surface-2: #2f2843;
+    --ink: #f5efff;
+    --ink-2: #b3a7c8;
+    --line: #3a3150;
+    --peach: #e89a86;
+    --rose: #e59bbf;
+    --lavender: #a88be0;
+    --butter: #e8c76a;
+    --sky: #7fb4ea;
+    --mint: #7fcba9;
+    --accent: #b9a0ff;
+    --accent-ink: #1c1828;
+    --press: #8a6fe0;
+    --live: #ff8fae;
+    --card-mix: 30%;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --bg: #1c1828;
+  --surface: #262036;
+  --surface-2: #2f2843;
+  --ink: #f5efff;
+  --ink-2: #b3a7c8;
+  --line: #3a3150;
+  --peach: #e89a86;
+  --rose: #e59bbf;
+  --lavender: #a88be0;
+  --butter: #e8c76a;
+  --sky: #7fb4ea;
+  --mint: #7fcba9;
+  --accent: #b9a0ff;
+  --accent-ink: #1c1828;
+  --press: #8a6fe0;
+  --live: #ff8fae;
+  --card-mix: 30%;
+  color-scheme: dark;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fs-display: 34px;
+  }
+}

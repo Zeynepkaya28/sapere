@@ -44,8 +44,33 @@ pnpm dev               # http://localhost:3000
 
 Her commit'ten önce Husky, değişen dosyalarda ESLint ve Prettier çalıştırır.
 
+## Kod yapısı
+
+```
+src/
+  app/                 # rotalar; /tasarim = geçici bileşen vitrini (indekslenmez)
+  components/
+    brand/             # Teddy, TeddyLoader, SplashScreen
+    layout/            # SiteHeader, NavBar (baloncuklu), ThemeToggle
+    ui/                # Button, Chip, Card, Avatar, Input, Toast, Modal
+  hooks/               # useLoadProgress (gerçek yükleme ilerlemesi)
+  i18n/                # next-intl yapılandırması
+  lib/
+    security/          # CSP ve güvenlik başlıkları
+    bubbles.ts         # baloncuk efekti (saf hesap + Web Animations API)
+    categories.ts      # kategori → pastel renk, tek kaynak
+    color.ts           # WCAG kontrast hesabı
+    motion.ts, theme.ts
+  middleware.ts        # istek başına CSP nonce'u
+  styles/tokens.css    # renk, boşluk, köşe, gölge, hareket belirteçleri
+messages/              # tr.json, en.json
+```
+
+Her bileşen kendi klasöründe `Bileşen.tsx` + `Bileşen.module.css` + `index.ts` olarak durur.
+
 ## Belgeler
 
 - [Karar günlüğü](docs/karar-gunlugu.md)
 - [Figma eşlemesi](docs/figma-map.md)
 - [Mimari şema](docs/mimari.md)
+- [Güvenlik raporu](docs/guvenlik-raporu.md)

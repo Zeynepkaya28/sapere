@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "description": "Her alandan ilginç bilgiler, anketler, canlı yarışmalar ve oyunlar."
+  },
+  "nav": {
+    "label": "Ana gezinme",
+    "feed": "Akış",
+    "live": "Canlı",
+    "liveActive": "Canlı yarışma var",
+    "games": "Oyunlar",
+    "map": "Harita",
+    "profile": "Profil",
+    "editor": "Editör"
+  },
+  "theme": {
+    "toLight": "Açık temaya geç",
+    "toDark": "Koyu temaya geç"
+  },
+  "loader": {
+    "label": "Yükleniyor",
+    "collecting": "Ayıcık bilgileri topluyor…",
+    "ready": "Hazır!",
+    "slow": "Veri gecikiyor. Ayıcık beklemeye devam ediyor.",
+    "failed": "Bağlantı koptu. Ayıcık tekrar deniyor; birkaç saniye sonra sayfayı yenileyebilirsin."
+  },
+  "splash": {
+    "didYouKnow": "Biliyor muydun?",
+    "sample": "Örnek"
+  },
+  "home": {
+    "title": "Bugün neyi merak ediyorsun?",
+    "soon": "Akış Faz 2'de geliyor. Şimdilik bileşenlere göz atabilirsin.",
+    "showcase": "Bileşenleri gör"
+  },
+  "toast": {
+    "close": "Bildirimi kapat"
+  },
+  "modal": {
+    "close": "Kapat"
+  },
+  "categories": {
+    "history": "Tarih",
+    "language": "Dil",
+    "space": "Uzay",
+    "nature": "Doğa",
+    "science": "Bilim",
+    "geography": "Coğrafya"
+  }
+}

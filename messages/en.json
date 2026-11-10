@@ -1,0 +1,49 @@
+{
+  "meta": {
+    "description": "Curious facts from every field, polls, live quizzes and games."
+  },
+  "nav": {
+    "label": "Main navigation",
+    "feed": "Feed",
+    "live": "Live",
+    "liveActive": "A live quiz is on",
+    "games": "Games",
+    "map": "Map",
+    "profile": "Profile",
+    "editor": "Editor"
+  },
+  "theme": {
+    "toLight": "Switch to light theme",
+    "toDark": "Switch to dark theme"
+  },
+  "loader": {
+    "label": "Loading",
+    "collecting": "Teddy is gathering facts…",
+    "ready": "Ready!",
+    "slow": "Data is running late. Teddy is still waiting.",
+    "failed": "Connection lost. Teddy is retrying; you can refresh the page in a few seconds."
+  },
+  "splash": {
+    "didYouKnow": "Did you know?",
+    "sample": "Sample"
+  },
+  "home": {
+    "title": "What are you curious about today?",
+    "soon": "The feed arrives in Phase 2. For now you can browse the components.",
+    "showcase": "See components"
+  },
+  "toast": {
+    "close": "Close notification"
+  },
+  "modal": {
+    "close": "Close"
+  },
+  "categories": {
+    "history": "History",
+    "language": "Language",
+    "space": "Space",
+    "nature": "Nature",
+    "science": "Science",
+    "geography": "Geography"
+  }
+}
