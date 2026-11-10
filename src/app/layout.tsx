@@ -31,7 +31,12 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     // data-theme is set before paint by the boot script, so React must not complain about it.
     <html lang={locale} className={fontVariables} suppressHydrationWarning>
       <head>
-        <script nonce={nonce} dangerouslySetInnerHTML={{ __html: themeBootScript }} />
+        {/* Browsers hide nonce values from the DOM, so the client sees nonce="". */}
+        <script
+          nonce={nonce}
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{ __html: themeBootScript }}
+        />
       </head>
       <body>
         <NextIntlClientProvider>
