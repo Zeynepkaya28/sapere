@@ -1,0 +1,61 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  border: 0;
+  border-radius: var(--radius-pill);
+  font-weight: 800;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease),
+    background-color var(--dur-fast) var(--ease);
+}
+
+.md {
+  min-height: 48px;
+  padding: 12px 24px;
+}
+
+.sm {
+  min-height: 36px;
+  padding: 6px 16px;
+  font-size: var(--fs-small);
+}
+
+/* Primary: 4px "press" shadow; pressing drops the button 3px and the shadow to 1px. */
+.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-press);
+}
+
+.primary:active:not(:disabled) {
+  transform: translateY(3px);
+  box-shadow: var(--shadow-press-down);
+}
+
+.secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+@media (hover: hover) {
+  .secondary:hover:not(:disabled),
+  .ghost:hover:not(:disabled) {
+    background: color-mix(in srgb, var(--rose) 50%, var(--surface));
+  }
+}
+
+.button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

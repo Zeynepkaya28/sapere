@@ -1,0 +1,83 @@
+.teddy {
+  display: block;
+  overflow: visible;
+}
+
+/* Every animated group rotates or moves in viewBox coordinates, so origins never drift. */
+.whole,
+.bounce,
+.legL,
+.legR,
+.armR {
+  transform-box: view-box;
+}
+
+/* Walk: legs lift in turn every 0.64s, body bobs every 0.32s. */
+.walk .legL {
+  animation: lift 0.64s ease-in-out infinite;
+}
+.walk .legR {
+  animation: lift 0.64s ease-in-out infinite;
+  animation-delay: -0.32s;
+}
+.walk .bounce {
+  animation: bob 0.32s ease-in-out infinite;
+}
+
+/* Wave: right arm swings -10° to +25° around the shoulder. */
+.wave .armR {
+  transform-origin: 42px 38px;
+  animation: wave 0.9s ease-in-out infinite;
+}
+
+/* Happy: 5px hop every 0.5s. */
+.happy .whole {
+  animation: hop 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) infinite;
+}
+
+@keyframes lift {
+  0%,
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(-2.5px);
+  }
+}
+
+@keyframes bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-2px);
+  }
+}
+
+@keyframes wave {
+  0%,
+  100% {
+    transform: rotate(-10deg);
+  }
+  50% {
+    transform: rotate(25deg);
+  }
+}
+
+@keyframes hop {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-5px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .teddy * {
+    animation: none !important;
+  }
+}

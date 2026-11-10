@@ -1,0 +1,12 @@
+.card {
+  padding: var(--space-6);
+  border-radius: var(--radius-card);
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid var(--line);
+}
+
+.tinted {
+  background: color-mix(in srgb, var(--tint) var(--card-mix), var(--surface));
+  border-color: transparent;
+}

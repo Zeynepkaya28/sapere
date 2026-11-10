@@ -1,0 +1,91 @@
+.loader {
+  width: 100%;
+  /* Room above the rail for the walking teddy. */
+  padding-top: 72px;
+}
+
+.md {
+  max-width: 420px;
+}
+
+.sm {
+  max-width: 280px;
+  padding-top: 48px;
+}
+
+.rail {
+  position: relative;
+  height: 14px;
+  border-radius: 7px;
+  background: var(--line);
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: var(--p);
+  border-radius: inherit;
+  overflow: hidden;
+  /* Fixed 420px gradient: colours are "uncovered" as the fill grows. */
+  background: linear-gradient(
+      90deg,
+      var(--peach),
+      var(--rose),
+      var(--lavender),
+      var(--sky),
+      var(--mint)
+    )
+    0 0 / 420px 100% no-repeat;
+  background-color: var(--mint);
+  transition: width var(--dur-progress) var(--ease);
+}
+
+/* Sparkles: 4px white dots drifting right. */
+.fill::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgb(255 255 255 / 0.7) 2px, transparent 2.5px);
+  background-size: 24px 14px;
+  animation: sparkle 1.2s linear infinite;
+}
+
+.walker {
+  position: absolute;
+  bottom: calc(100% + 6px - 4px);
+  left: var(--p);
+  transform: translateX(-50%);
+  transition: left var(--dur-progress) var(--ease);
+  line-height: 0;
+}
+
+.caption {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-3);
+  font-size: var(--fs-small);
+  color: var(--ink-2);
+}
+
+.percent {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-weight: 500;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes sparkle {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: 24px 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fill::after {
+    animation: none;
+  }
+}
