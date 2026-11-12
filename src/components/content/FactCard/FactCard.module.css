@@ -1,0 +1,77 @@
+/* TODO(figma): check spacing and type against the "Bilgi kartı" frame once PNGs arrive. */
+.card {
+  display: grid;
+  gap: var(--space-3);
+  transition:
+    transform var(--dur-fast) var(--ease-spring),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+@media (hover: hover) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px -16px color-mix(in srgb, var(--ink) 45%, transparent);
+  }
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+
+/* Same look as the splash "Örnek" label: sample content must always say so. */
+.sample {
+  padding: 2px 8px;
+  border-radius: var(--radius-pill);
+  background: var(--surface);
+  font-family: var(--font-mono);
+  font-size: var(--fs-eyebrow);
+  letter-spacing: 0.04em;
+}
+
+.title {
+  margin: 0;
+  font-size: var(--fs-card);
+  line-height: 1.15;
+}
+
+.body {
+  margin: 0;
+  line-height: 1.55;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  padding-top: var(--space-2);
+  font-size: var(--fs-small);
+}
+
+.place {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 700;
+}
+
+.mapLink {
+  font-weight: 800;
+  color: var(--ink);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.mapLink span {
+  display: inline-block;
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.mapLink:hover span,
+.mapLink:focus-visible span {
+  transform: translateX(3px);
+}

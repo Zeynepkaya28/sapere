@@ -29,8 +29,9 @@
   },
   "home": {
     "title": "What are you curious about today?",
-    "soon": "The feed arrives in Phase 2. For now you can browse the components.",
-    "showcase": "See components"
+    "intro": "Short, surprising facts from history to space, language to nature. Browse the cards or see where they happened on the map.",
+    "browse": "Browse facts",
+    "explore": "Explore the map"
   },
   "toast": {
     "close": "Close notification"
@@ -45,5 +46,34 @@
     "nature": "Nature",
     "science": "Science",
     "geography": "Geography"
+  },
+  "feed": {
+    "title": "Did you know?",
+    "sampleNote": "These facts are sample content. Editor review comes in a later phase.",
+    "filterLabel": "Filter by category",
+    "clear": "Show all",
+    "count": "{count, plural, one {# fact} other {# facts}}"
+  },
+  "fact": {
+    "sample": "Sample",
+    "place": "Place",
+    "onMap": "See on map"
+  },
+  "map": {
+    "metaTitle": "Map",
+    "title": "Fact map",
+    "intro": "Tap a pin to see where a fact happened. Zoom in for facts in Turkey.",
+    "viewLabel": "Map view",
+    "world": "World",
+    "turkey": "Turkey",
+    "cluster": "Turkey: {count} facts. Zoom in",
+    "clusterShort": "Turkey · {count}",
+    "pin": "{title} ({place})",
+    "hint": "Pick a pin or open a fact from the list below.",
+    "listTitle": "Facts on the map",
+    "close": "Close fact",
+    "opened": "{title} opened",
+    "elsewhere": "Facts without a place are in the feed.",
+    "toFeed": "Back to feed"
   }
 }

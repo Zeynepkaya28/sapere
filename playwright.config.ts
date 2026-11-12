@@ -8,6 +8,8 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
+  // One local `next start` server times out under 8+ parallel browsers; 4 keeps runs stable.
+  workers: process.env.CI ? undefined : 4,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: { baseURL, trace: "on-first-retry" },
   projects: [

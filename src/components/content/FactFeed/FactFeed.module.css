@@ -1,0 +1,62 @@
+.feed {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.clear {
+  min-height: 32px;
+  padding: 4px 12px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.count {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+  font-weight: 700;
+}
+
+/* Masonry-style columns so cards of different lengths pack without gaps. */
+.grid {
+  columns: 3 300px;
+  column-gap: var(--space-5);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  break-inside: avoid;
+  margin-bottom: var(--space-5);
+  animation: rise 420ms var(--ease-spring) both;
+  animation-delay: calc(min(var(--i), 10) * 45ms);
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .item {
+    animation: none;
+  }
+}
