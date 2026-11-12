@@ -1,0 +1,421 @@
+/* TODO(figma): no map frame seen yet; colours come from the existing tokens. */
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 360px;
+  align-items: start;
+  gap: var(--space-6);
+}
+
+.mapCol {
+  display: grid;
+  gap: var(--space-3);
+}
+
+/* World / Türkiye switch. */
+.toolbar {
+  display: inline-flex;
+  justify-self: start;
+  gap: 4px;
+  padding: 4px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-2);
+}
+
+.segment {
+  min-height: 36px;
+  padding: 0 var(--space-5);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition:
+    background-color var(--dur-fast) var(--ease),
+    color var(--dur-fast) var(--ease);
+}
+
+.segment[aria-pressed="true"] {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.stage {
+  --sea: color-mix(in srgb, var(--sky) 45%, var(--surface));
+  --land: var(--surface);
+  --home: color-mix(in srgb, var(--butter) 80%, var(--surface));
+  --edge: color-mix(in srgb, var(--ink) 22%, transparent);
+
+  display: grid;
+  border-radius: var(--radius-card-lg);
+  background: var(--sea);
+  border: 1.5px solid var(--line);
+}
+
+/* Dark: land must stay lighter than the sea, and Turkey less loud. Same values for system and toggle. */
+@media (prefers-color-scheme: dark) {
+  :global(:root:not([data-theme="light"])) .stage {
+    --sea: color-mix(in srgb, var(--sky) 18%, var(--bg));
+    --land: var(--surface-2);
+    --home: color-mix(in srgb, var(--butter) 45%, var(--surface-2));
+    --edge: color-mix(in srgb, var(--ink) 28%, transparent);
+  }
+}
+
+:global(:root[data-theme="dark"]) .stage {
+  --sea: color-mix(in srgb, var(--sky) 18%, var(--bg));
+  --land: var(--surface-2);
+  --home: color-mix(in srgb, var(--butter) 45%, var(--surface-2));
+  --edge: color-mix(in srgb, var(--ink) 28%, transparent);
+}
+
+/* Both views share one grid cell and cross-fade. */
+.view {
+  position: relative;
+  grid-area: 1 / 1;
+  align-self: center;
+  transition:
+    opacity var(--dur-panel) var(--ease),
+    transform var(--dur-panel) var(--ease),
+    visibility 0s linear 0s;
+}
+
+.view[data-active="false"] {
+  opacity: 0;
+  transform: scale(0.94);
+  visibility: hidden;
+  transition:
+    opacity var(--dur-panel) var(--ease),
+    transform var(--dur-panel) var(--ease),
+    visibility 0s linear var(--dur-panel);
+}
+
+.view[data-view="world"][data-active="false"] {
+  transform: scale(1.12);
+}
+
+.svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.land {
+  fill: var(--land);
+}
+
+.home {
+  fill: var(--home);
+}
+
+.borders {
+  fill: none;
+  stroke: var(--edge);
+  stroke-width: 0.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.pins {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pinItem {
+  position: absolute;
+  transform: translate(-50%, -50%);
+}
+
+.pin {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+}
+
+.view[data-active="true"] .pin,
+.view[data-active="true"] .cluster {
+  animation: pop 420ms var(--ease-spring) both;
+  animation-delay: calc(120ms + var(--i) * 55ms);
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.2) translateY(-10px);
+  }
+}
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border: 2.5px solid var(--ink);
+  border-radius: 50%;
+  background: var(--pin);
+  box-shadow: 0 2px 0 var(--ink);
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.pin:hover .dot,
+.pin:focus-visible .dot {
+  transform: scale(1.2);
+}
+
+.pin[aria-pressed="true"] .dot {
+  transform: scale(1.4);
+}
+
+/* Soft ring around the chosen pin. */
+.pin[aria-pressed="true"]::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  animation: ring 1.6s var(--ease) infinite;
+  pointer-events: none;
+}
+
+@keyframes ring {
+  from {
+    opacity: 0.7;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.6);
+  }
+}
+
+.label {
+  position: absolute;
+  bottom: calc(100% - 2px);
+  left: 50%;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--fs-eyebrow);
+  font-weight: 800;
+  white-space: nowrap;
+  opacity: 0;
+  transform: translate(-50%, 4px);
+  transition:
+    opacity var(--dur-fast) var(--ease),
+    transform var(--dur-fast) var(--ease);
+  pointer-events: none;
+}
+
+.pin:hover .label,
+.pin:focus-visible .label,
+.pin[aria-pressed="true"] .label {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+.pin:hover,
+.pin:focus-visible {
+  z-index: 2;
+}
+
+.pinItem:has(.pin[aria-pressed="true"]) {
+  z-index: 3;
+}
+
+/* Sits above Turkey with a small pointer, so nearby pins (Giza) stay visible. */
+.clusterItem {
+  transform: translate(-50%, calc(-100% - 8px));
+}
+
+.clusterItem::after {
+  content: "";
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 50%;
+  border: 7px solid transparent;
+  border-top-color: var(--ink);
+  border-bottom: 0;
+  transform: translateX(-50%);
+}
+
+.cluster {
+  position: relative;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 2.5px solid var(--ink);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--peach) 85%, var(--surface));
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 3px 0 var(--ink);
+  cursor: pointer;
+  transition: transform var(--dur-fast) var(--ease-spring);
+}
+
+.cluster:hover,
+.cluster:focus-visible {
+  transform: scale(1.08);
+}
+
+.panel {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.selected {
+  display: grid;
+  gap: var(--space-2);
+  animation: slide 320ms var(--ease-spring) both;
+}
+
+@keyframes slide {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+.close {
+  justify-self: end;
+  min-height: 36px;
+  padding: 0 var(--space-4);
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  font-size: var(--fs-small);
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  cursor: pointer;
+}
+
+.hint {
+  margin: 0;
+  padding: var(--space-5);
+  border: 1.5px dashed var(--line);
+  border-radius: var(--radius-card);
+  color: var(--ink-2);
+}
+
+.listTitle {
+  margin: var(--space-2) 0 0;
+  font-size: 18px;
+}
+
+.list {
+  display: grid;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 44px;
+  padding: 6px var(--space-3);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-input);
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color var(--dur-fast) var(--ease);
+}
+
+.listItem:hover {
+  background: var(--surface-2);
+}
+
+.listItem[aria-pressed="true"] {
+  border-color: var(--ink);
+  background: color-mix(in srgb, var(--pin) var(--card-mix), var(--surface));
+}
+
+.listDot {
+  flex: none;
+  width: 12px;
+  height: 12px;
+  border: 2px solid var(--ink);
+  border-radius: 50%;
+  background: var(--pin);
+}
+
+.listText {
+  display: grid;
+}
+
+.listName {
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.listPlace {
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+.elsewhere {
+  margin: 0;
+  color: var(--ink-2);
+  font-size: var(--fs-small);
+}
+
+.elsewhere a {
+  color: var(--ink);
+  font-weight: 800;
+}
+
+@media (max-width: 1023px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 767px) {
+  .stage {
+    border-radius: var(--radius-card);
+  }
+
+  /* Small dots on phones; the 36px button keeps the tap target. */
+  .dot {
+    width: 14px;
+    height: 14px;
+    border-width: 2px;
+  }
+
+  .label {
+    display: none;
+  }
+
+  .pin[aria-pressed="true"] .label {
+    display: block;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view[data-active="true"] .pin,
+  .view[data-active="true"] .cluster,
+  .selected,
+  .pin[aria-pressed="true"]::after {
+    animation: none;
+  }
+}

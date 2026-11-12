@@ -29,8 +29,9 @@
   },
   "home": {
     "title": "Bugün neyi merak ediyorsun?",
-    "soon": "Akış Faz 2'de geliyor. Şimdilik bileşenlere göz atabilirsin.",
-    "showcase": "Bileşenleri gör"
+    "intro": "Tarihten uzaya, dilden doğaya kısa ve şaşırtıcı bilgiler. Kartlara göz at ya da haritada nerede geçtiklerini keşfet.",
+    "browse": "Bilgilere göz at",
+    "explore": "Haritada keşfet"
   },
   "toast": {
     "close": "Bildirimi kapat"
@@ -45,5 +46,34 @@
     "nature": "Doğa",
     "science": "Bilim",
     "geography": "Coğrafya"
+  },
+  "feed": {
+    "title": "Biliyor muydun?",
+    "sampleNote": "Bu bilgiler örnek içeriktir. Editör doğrulaması sonraki fazda gelecek.",
+    "filterLabel": "Kategoriye göre süz",
+    "clear": "Tümünü göster",
+    "count": "{count} bilgi"
+  },
+  "fact": {
+    "sample": "Örnek",
+    "place": "Konum",
+    "onMap": "Haritada gör"
+  },
+  "map": {
+    "metaTitle": "Harita",
+    "title": "Bilgi haritası",
+    "intro": "İğnelere dokun, bilginin geçtiği yeri keşfet. Türkiye'deki bilgiler için yakınlaştır.",
+    "viewLabel": "Harita görünümü",
+    "world": "Dünya",
+    "turkey": "Türkiye",
+    "cluster": "Türkiye: {count} bilgi. Yakınlaştır",
+    "clusterShort": "Türkiye · {count}",
+    "pin": "{title} ({place})",
+    "hint": "Bir iğne seç ya da aşağıdaki listeden bir bilgi aç.",
+    "listTitle": "Haritadaki bilgiler",
+    "close": "Bilgiyi kapat",
+    "opened": "{title} açıldı",
+    "elsewhere": "Konumu olmayan bilgiler akışta.",
+    "toFeed": "Akışa dön"
   }
 }

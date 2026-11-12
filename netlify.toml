@@ -5,6 +5,11 @@
   command = "pnpm build"
   publish = ".next"
 
+# Netlify did not auto-detect the Next.js runtime on upload deploys (no functions, every page 404),
+# so it is named here. Not pinned: Netlify updates it on each build.
+[[plugins]]
+  package = "@netlify/plugin-nextjs"
+
 [build.environment]
   NODE_VERSION = "22"
   PNPM_VERSION = "12.15.0"

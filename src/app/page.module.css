@@ -25,23 +25,51 @@
   line-height: 1.04;
 }
 
-.chips {
+.intro {
+  margin: 0;
+  max-width: 46ch;
+  font-size: 17px;
+  line-height: 1.5;
+}
+
+.actions {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-2);
-  margin: 0;
-  padding: 0;
-  list-style: none;
+  gap: var(--space-3);
 }
 
-.soon {
-  margin: 0;
-  color: var(--ink);
-}
-
-.link {
-  justify-self: start;
+/* Link styled like the primary/secondary Button (same press shadow). */
+.action {
+  display: inline-flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 var(--space-6);
+  border-radius: var(--radius-pill);
   font-weight: 800;
+  text-decoration: none;
+  transition:
+    transform var(--dur-fast) var(--ease),
+    box-shadow var(--dur-fast) var(--ease);
+}
+
+.action:active {
+  transform: translateY(3px);
+}
+
+.primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-press);
+}
+
+.primary:active {
+  box-shadow: var(--shadow-press-down);
+}
+
+.secondary {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1.5px solid color-mix(in srgb, var(--ink) 14%, transparent);
 }
 
 .teddyWrap {
@@ -51,6 +79,28 @@
   height: 240px;
   border-radius: 50%;
   background: var(--peach);
+}
+
+.feed {
+  display: grid;
+  gap: var(--space-5);
+  margin-top: var(--space-9);
+  scroll-margin-top: 96px;
+}
+
+.feedHead {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.feedTitle {
+  margin: 0;
+  font-size: var(--fs-section);
+}
+
+.note {
+  margin: 0;
+  color: var(--ink-2);
 }
 
 @media (max-width: 767px) {
@@ -74,5 +124,10 @@
   .teddyWrap svg {
     width: 112px;
     height: 112px;
+  }
+
+  .feed {
+    margin-top: var(--space-8);
+    scroll-margin-top: var(--space-4);
   }
 }

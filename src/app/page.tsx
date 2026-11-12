@@ -1,13 +1,13 @@
 import Link from "next/link";
 import { getTranslations } from "next-intl/server";
 import { Teddy } from "@/components/brand/Teddy";
+import { FactFeed } from "@/components/content/FactFeed";
 import { SiteHeader } from "@/components/layout/SiteHeader";
-import { Chip } from "@/components/ui/Chip";
-import { categoryList } from "@/lib/categories";
+import { facts } from "@/content/facts";
 import { BootSplash } from "./_components/BootSplash";
 import styles from "./page.module.css";
 
-// Phase 1 home: welcome card only. The feed, polls and leaderboard arrive in Phase 2.
+// Home: welcome card and the fact feed. Polls and leaderboard come later.
 export default async function Home() {
   const t = await getTranslations();
 
@@ -21,21 +21,29 @@ export default async function Home() {
             <h1 id="welcome-title" className={styles.title}>
               {t("home.title")}
             </h1>
-            <ul className={styles.chips} aria-label={t("nav.feed")}>
-              {categoryList.map((c) => (
-                <li key={c}>
-                  <Chip category={c}>{t(`categories.${c}`)}</Chip>
-                </li>
-              ))}
-            </ul>
-            <p className={styles.soon}>{t("home.soon")}</p>
-            <Link href="/tasarim" className={styles.link}>
-              {t("home.showcase")} →
-            </Link>
+            <p className={styles.intro}>{t("home.intro")}</p>
+            <div className={styles.actions}>
+              <a href="#bilgiler" className={`${styles.action} ${styles.primary}`}>
+                {t("home.browse")}
+              </a>
+              <Link href="/harita" className={`${styles.action} ${styles.secondary}`}>
+                {t("home.explore")}
+              </Link>
+            </div>
           </div>
           <div className={styles.teddyWrap}>
             <Teddy pose="wave" size={168} />
           </div>
+        </section>
+
+        <section id="bilgiler" className={styles.feed} aria-labelledby="feed-title">
+          <div className={styles.feedHead}>
+            <h2 id="feed-title" className={styles.feedTitle}>
+              {t("feed.title")}
+            </h2>
+            <p className={styles.note}>{t("feed.sampleNote")}</p>
+          </div>
+          <FactFeed facts={facts} />
         </section>
       </main>
     </>
